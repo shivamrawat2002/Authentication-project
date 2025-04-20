@@ -8,12 +8,14 @@ app.use(cors())
 app.use(helmet())
 app.use(cookieParser())
 //importing authRouter
+// testEnv.js
+require('dotenv').config();
 app.use(express.json())
 const authRouter = require("./routers/authRouter");
 app.use(express.urlencoded({ extended: true }))
 //if someone sends JSON data in a request (like in a POST or PUT), please automatically parse it and give it to me in req.body."
 //allows your server to parse URL-encoded data, like data from HTML <form> submissions.
-mongoose.connect(process.env.MONGO_URL).then(() => {
+mongoose.connect(process.env.MONGO_URI).then(() => {
     console.log("Database connected successfully")
 }).catch((err) => {
     console.log(err)
